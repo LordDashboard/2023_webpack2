@@ -1,4 +1,4 @@
-function handleSubmit(event) {
+export function handleSubmit(event) {
     event.preventDefault()
 
     // check what text was put into the form field
@@ -6,10 +6,9 @@ function handleSubmit(event) {
    
     checkUrlValidity(formText)
 
-   
 }
 
-function checkUrlValidity(input) {  
+export function checkUrlValidity(input) {  
   
     // Define a regular expression pattern to match URLs
     var urlPattern = /^(http|https):\/\/[\w\-]+(\.[\w\-]+)+([\w\-\.,@?^=%&amp;:/~\+#]*[\w\-\@?^=%&amp;/~\+#])?$/;
@@ -27,9 +26,9 @@ function checkUrlValidity(input) {
     }
   }
 
-function extractTopicsServer(){
+export function extractTopicsServer(){
 
-    fetch("/meaning")
+    fetch("/dist/meaning")
     .then(response => response.json())
     .then(data => {
       console.log("Topics Extraction API response:", data);
@@ -38,14 +37,10 @@ function extractTopicsServer(){
 
     })
     .catch(error => console.log("Error:", error));
-
-    
-
-
 }
 
 
-function showResults(concepts){
+export function showResults(concepts){
     const results = document.getElementById('results');
     results.innerHTML = '';
     concepts.forEach(concept => {
