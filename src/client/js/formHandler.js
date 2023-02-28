@@ -1,5 +1,7 @@
-function handleSubmit(event) {
+export function handleSubmit(event) {
     event.preventDefault()
+
+    console.log("handleSubmit")
 
     // check what text was put into the form field
     let formText = document.getElementById('name').value
@@ -9,7 +11,8 @@ function handleSubmit(event) {
    
 }
 
-function checkUrlValidity(input) {  
+
+export function checkUrlValidity(input) {  
   
     // Define a regular expression pattern to match URLs
     var urlPattern = /^(http|https):\/\/[\w\-]+(\.[\w\-]+)+([\w\-\.,@?^=%&amp;:/~\+#]*[\w\-\@?^=%&amp;/~\+#])?$/;
@@ -27,13 +30,14 @@ function checkUrlValidity(input) {
     }
   }
 
-function extractTopicsServer(){
+export function extractTopicsServer(){
 
     fetch("/meaning")
     .then(response => response.json())
     .then(data => {
       console.log("Topics Extraction API response:", data);
       // Use the response data to analyze the topics
+      console.log(data['concept_list'])
       showResults(data['concept_list'])
 
     })
@@ -45,7 +49,7 @@ function extractTopicsServer(){
 }
 
 
-function showResults(concepts){
+export function showResults(concepts){
     const results = document.getElementById('results');
     results.innerHTML = '';
     concepts.forEach(concept => {
@@ -54,3 +58,4 @@ function showResults(concepts){
         results.appendChild(conceptDiv);
     });
 }
+

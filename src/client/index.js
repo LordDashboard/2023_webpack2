@@ -1,4 +1,16 @@
-import { checkForName } from './js/nameChecker'
+import { checkForName } from './js/nameChecker.js'
+import { handleSubmit, checkUrlValidity } from './js/formHandler.js'
+import { test } from './js/simpleCheck.js'
 
-console.log("I am here")
-console.log(checkForName)
+
+checkForName("test")
+test()
+
+// index.js
+document.getElementById("submit-button").addEventListener("click", handleSubmit);
+document.getElementById("name").addEventListener("blur", checkUrlValidity);
+
+
+
+
+
