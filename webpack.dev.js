@@ -2,18 +2,18 @@ const path = require("path")
 const webpack = require('webpack')
 const HtmlWebPackPlugin = require("html-webpack-plugin")
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
   mode: 'development',
   devtool: 'source-map',
-  devServer: {
-    static: './dist',
+  entry: './src/client/index.js',
+  output: {
+      libraryTarget: 'var',
+      library: 'Client'
   },
-    entry: './src/client/index.js',
-    output: {
-        filename: 'main.js'
-      },
-    module: {
+  stats:'verbose',
+  module: {
         rules: [
             {
               test: /\.m?js$/,
@@ -26,8 +26,11 @@ module.exports = {
               }
             },
             {
-              test: /\.scss$/,
-             use: [ 'style-loader', 'css-loader', 'sass-loader' ]
+              test: /\.(png|jpe?g|gif)$/i,
+              loader: 'file-loader',
+              options: {
+                name: '[path][name].[ext]',
+              }
             }
           ]
     },
@@ -45,7 +48,8 @@ module.exports = {
           // Automatically remove all unused webpack assets on rebuild
           cleanStaleWebpackAssets: true,
           protectWebpackAssets: false
-  })
+  }),
+  new WorkboxPlugin.GenerateSW()
     ]
 
 }
