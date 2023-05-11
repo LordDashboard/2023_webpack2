@@ -24,7 +24,11 @@ app.get('/test', function (req, res) {
     res.send(mockAPIResponse)
 })
 app.get('/meaning', function (req, res) {
+
+    console.log("meaningcloud api called")
+    console.log(req.query.url)
     const formdata = new FormData();
+
     formdata.append("key", "bcae8578891ca25eff5ebf4a0ad003a1");
     formdata.append("url", "https://en.wikipedia.org/wiki/Webpack");
     formdata.append("lang", "en"); // 2-letter code, like en es fr ...

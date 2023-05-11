@@ -16,7 +16,9 @@ test()
 document.getElementById("submit-button").addEventListener("click", handleSubmit);
 document.getElementById("name").addEventListener("blur", checkUrlValidity);
 
-
-
+// export {
+//     checkForName,
+//     handleSubmit
+// }
 
 
